@@ -21,7 +21,7 @@ metadata:
 spec:
   ports:
   - name: "80"
-    port: 5005
+    port: 5050
     targetPort: 8080
   selector:
     service: web
@@ -52,14 +52,14 @@ spec:
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: dbsecret
-              key: password
+              name: mysql-secret
+              key: mysql-password
         - name: DB_USER
           valueFrom:
             secretKeyRef:
-              name: dbsecret
-              key: username
-        image: monolith-app:1.0.0
+              name: mysql-secret
+              key: mysql-user
+        image: ecommerce:1.0.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
